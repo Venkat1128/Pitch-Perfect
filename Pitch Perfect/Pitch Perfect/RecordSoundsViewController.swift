@@ -29,7 +29,7 @@ class RecordSoundsViewController: UIViewController ,AVAudioRecorderDelegate {
     }
     @IBAction func recordAudio(_ sender: AnyObject) {
         print("record button pressed")
-        recordingLabel.text = "Recording in progress"
+        recordingLabel.text = "Recording!"
         recordButton.isEnabled = false
         stopRecordingButton.isEnabled = true
         
@@ -52,7 +52,7 @@ class RecordSoundsViewController: UIViewController ,AVAudioRecorderDelegate {
 
     @IBAction func stopRecording(_ sender: AnyObject) {
         print("Stop recording button pressed")
-        recordingLabel.text = "Tap to Record"
+        recordingLabel.text = "Record!"
         recordButton.isEnabled = true
         stopRecordingButton.isEnabled = false
         

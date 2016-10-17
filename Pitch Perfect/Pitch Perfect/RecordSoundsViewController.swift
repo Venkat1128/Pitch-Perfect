@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 class RecordSoundsViewController: UIViewController ,AVAudioRecorderDelegate {
-
+    
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var recordingLabel: UILabel!
     @IBOutlet weak var stopRecordingButton: UIButton!
@@ -23,16 +23,8 @@ class RecordSoundsViewController: UIViewController ,AVAudioRecorderDelegate {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     @IBAction func recordAudio(_ sender: AnyObject) {
-        print("record button pressed")
-        recordingLabel.text = "Recording!"
-        recordButton.isEnabled = false
-        stopRecordingButton.isEnabled = true
-        
+        configureUI(recording: true)
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask, true) [0] as String
         let recordingName = "recordedVoice.wav"
         let pathArray = [dirPath , recordingName]
@@ -49,23 +41,29 @@ class RecordSoundsViewController: UIViewController ,AVAudioRecorderDelegate {
         audioRecorder.record()
         
     }
-
+    
     @IBAction func stopRecording(_ sender: AnyObject) {
         print("Stop recording button pressed")
-        recordingLabel.text = "Record!"
-        recordButton.isEnabled = true
-        stopRecordingButton.isEnabled = false
-        
+        configureUI(recording: false)
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
     }
+    
+    func configureUI(recording: Bool) {
+        recordingLabel.text = recording ? "Recording!" : "Record!"
+        stopRecordingButton.isEnabled = recording
+        recordButton.isEnabled = !recording
+    }
+    
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        print("finish recording")
         if flag {
-            self.performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
+            performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
         }else{
-            print("Saving of recording failed")
+            let alertController = UIAlertController(title: "Pitch Perfect", message: "Saving of recording failed", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(defaultAction)
+            present(alertController, animated: true, completion: nil)
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

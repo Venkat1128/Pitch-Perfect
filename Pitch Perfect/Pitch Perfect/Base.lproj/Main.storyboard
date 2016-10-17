@@ -121,6 +121,16 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bwr-Kt-JDG">
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAf-ID-maz" userLabel="Stop Recording Button">
+                                                <state key="normal" image="StopRecordingButton"/>
+                                                <connections>
+                                                    <action selector="stopButtonPressedWith_sender:" destination="65N-0F-mvd" eventType="touchUpInside" id="C3f-4p-oGh"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -138,6 +148,7 @@
                         <outlet property="rabbitButton" destination="SPo-bv-df4" id="z5W-LP-Uia"/>
                         <outlet property="reverbButton" destination="I4r-9s-sqs" id="5wI-D2-2Yb"/>
                         <outlet property="snailButton" destination="hd2-wK-Lba" id="2aw-5J-dJb"/>
+                        <outlet property="stopButton" destination="KAf-ID-maz" id="dUC-tL-4ix"/>
                         <outlet property="vaderButton" destination="gNF-v8-oTt" id="Geq-ij-NHN"/>
                     </connections>
                 </viewController>

@@ -1,2 +1,2 @@
 # Pitch-Perfect
-Pitch Perfect for Submission
+Pitch Perfect App for Udacity Cource
